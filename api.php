@@ -6,13 +6,67 @@ $METHOD = $_SERVER["REQUEST_METHOD"];
 
 echo json_encode($_DATA, JSON_PRETTY_PRINT);
 
-$suma = (float) array_sum($_DATA);
+$msg = match ($METHOD) {
+    "POST" => calcular($_DATA),
+    default => "Método no permitido",
+};
 
-$prom = (float) $suma / 3;
+echo $msg;
+// echo json_encode(["prom" => ($prom <= 3.9) ? "Estudie" : "Becado"], JSON_PRETTY_PRINT);
 
-echo json_encode(["prom" => ($prom <= 3.9) ? "Estudie" : "Becado"], JSON_PRETTY_PRINT);
+//FUNCIONES
+
+function calcular(array $array)
+{
+    $notas = valor_notas($array);
+
+    $msg = ($notas !== false) ? proceso($array) : "Notas no válidas";
+
+    return $msg;
+}
 
 
+function proceso(array $array)
+{
+    $suma = (float) array_sum($array);
+    $prom = (float) $suma / count($array);
+    $msg = mensage($prom);
+    $msg .= ", Promedio: " . $prom;
+    return $msg;
+}
 
-echo $prom;
+function mensage(float $promedio)
+{
+    $msg = ($promedio <= 3.9) ? "Estudie" : "Becado";
+    return $msg;
+}
+
+function validar(string $nota)
+{
+    if (is_numeric($nota)) {
+        return (float) $nota;
+    } else {
+        return false;
+    }
+
+}
+
+function valor_notas(array $notas)
+{
+
+    $notas_V = (array) [];
+
+    foreach ($notas as $nota => $valor) {
+        $nota = validar($valor);
+
+        if ($nota === false) {
+            return false;
+        }
+
+        $notas_V[] = $nota;
+    }
+
+    return $notas_V;
+}
+
 ?>
