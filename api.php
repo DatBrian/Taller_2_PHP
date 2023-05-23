@@ -12,16 +12,13 @@ $msg = match ($METHOD) {
 };
 
 echo $msg;
-// echo json_encode(["prom" => ($prom <= 3.9) ? "Estudie" : "Becado"], JSON_PRETTY_PRINT);
 
 //FUNCIONES
 
 function calcular(array $array)
 {
     $notas = valor_notas($array);
-
     $msg = ($notas !== false) ? proceso($array) : "Notas no válidas";
-
     return $msg;
 }
 
@@ -48,14 +45,11 @@ function validar(string $nota)
     } else {
         return false;
     }
-
 }
 
 function valor_notas(array $notas)
 {
-
     $notas_V = (array) [];
-
     foreach ($notas as $nota => $valor) {
         $nota = validar($valor);
 
@@ -65,7 +59,6 @@ function valor_notas(array $notas)
 
         $notas_V[] = $nota;
     }
-
     return $notas_V;
 }
 
