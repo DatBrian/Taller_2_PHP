@@ -1,8 +1,7 @@
 import { configuracion } from "../main.js";
 
 let myForm = document.querySelector("#myForm");
-let myHeaders = new Headers({ "Content-Type": "application.json" });
-
+let myHeaders = new Headers({ "Content-Type": "application/json" });
 
 myForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -11,3 +10,4 @@ myForm.addEventListener("submit", async (e) => {
     let res = await (await fetch("api.php", config)).text();
     document.querySelector("pre").innerHTML = res;
 })
+
