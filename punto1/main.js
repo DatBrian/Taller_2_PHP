@@ -1,4 +1,4 @@
-import { configuracion } from "../main.js";
+import { configuracion } from "../config/methods.js";
 
 let myForm = document.querySelector("#myForm");
 let myHeaders = new Headers({ "Content-Type": "application.json" });

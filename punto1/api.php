@@ -6,7 +6,8 @@ $METHOD = $_SERVER["REQUEST_METHOD"];
 
 function myAutoload($class)
 {
-    require __DIR__ . '/clases.php';
+    $ruta = dirname(__DIR__);
+    require $ruta . '/config/methods.php';
 }
 spl_autoload_register('myAutoload');
 
