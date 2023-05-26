@@ -15,7 +15,6 @@ echo json_encode($_DATA, JSON_PRETTY_PRINT);
 
 $msg = match ($METHOD) {
     "POST" => calcular_notas::calcular($_DATA),
-    // "POST" => calcular($_DATA),
     default => "Método no permitido",
 };
 

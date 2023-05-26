@@ -37,9 +37,24 @@ class calcular_notas
 
     }
 
-    public static function validar(string $nota)
+    public static function validar(string $num)
     {
-        return (is_numeric($nota)) ? (float) $nota : (boolean) false;
+        return (is_numeric($num)) ? (float) $num : (boolean) false;
+    }
+}
+
+class punto_2 extends calcular_notas{
+
+    public static function calcular(array $array){
+        $num = $array["number"];
+        $num = self::validar($num);
+        $msg = self::proceso_2($num);
+        return $msg;
+    }
+
+    public static function proceso_2(float $num){
+        $num % 2 == 0 ? $msg = "El número es par" : $msg = "El número es impar";
+        return $msg;
     }
 }
 

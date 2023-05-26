@@ -10,8 +10,15 @@ function myAutoload($class)
     require $ruta . '/config/methods.php';
 }
 
-spl_autoload('myAutoload');
+spl_autoload_register('myAutoload');
 
 echo json_encode($_DATA, JSON_PRETTY_PRINT);
+
+$msg = match($METHOD){
+    "POST" => punto_2::calcular($_DATA),
+    default => "Método no permitido"
+};
+
+echo ($msg);
 
 ?>
