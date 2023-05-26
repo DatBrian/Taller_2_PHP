@@ -58,4 +58,21 @@ class punto_2 extends calcular_notas{
     }
 }
 
+class punto_3 extends calcular_notas{
+
+    public static function calcular(array $array){
+        $notas = self::valor_notas($array);
+        $msg = ($notas !== false) ? self::proceso_3($notas) : "Notas no válidias";
+        return $msg;
+    }
+
+    public static function proceso_3(array $array){
+        $res = $array[0];
+        $cor = $array[1];
+        $vol = $res * $cor;
+        $msg = "El voltaje es: $vol (v)";
+        return $msg;
+    }
+}
+
 ?>
