@@ -103,4 +103,23 @@ class punto_4 extends calcular_notas
     }
 }
 
+class punto_5 extends calcular_notas
+{
+    public static function calcular(array $array)
+    {
+        $nums = self::valor_notas($array);
+        $msg = ($nums !== false) ? self::proceso_5($nums) : "Notas no válidias";
+        return $msg;
+    }
+
+    public static function proceso_5($nums)
+    {
+
+        $msg = ($nums[0] > $nums[1]) ? "La suma es: " . ($nums[0] + $nums[1]) . " y la diferencia es: " . ($nums[0] - $nums[1])
+            : "El producto es: " . ($nums[0] * $nums[1]) . " y la división es: " . ($nums[0] / $nums[1]);
+
+        return $msg;
+    }
+}
+
 ?>
