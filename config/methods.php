@@ -30,7 +30,7 @@ class calcular_notas
         foreach ($notas as $nota => $valor) {
             $nota = self::validar($valor);
 
-            $notas_V[] = $nota !== false ? $nota : false;
+            $notas_V[] = ($nota !== false) ? $nota : false;
         }
 
         return in_array(false, $notas_V, true) ? false : $notas_V;
@@ -46,7 +46,7 @@ class calcular_notas
 class punto_2 extends calcular_notas
 {
 
-    public static function calcular(array $array)
+    public static function calcular(array $array):string
     {
         $num = $array["number"];
         $num = self::validar($num);
@@ -54,9 +54,21 @@ class punto_2 extends calcular_notas
         return $msg;
     }
 
-    public static function proceso_2(float $num)
-    {
-        $num % 2 == 0 ? $msg = "El número es par" : $msg = "El número es impar";
+    public static function proceso_2(float $num):string
+    {   
+        $msg = ($num == 10) ? "El número es par y es igual a 10" : self::validate($num);
+        
+        return $msg;
+    }
+
+    public static function validate(float $num): string{
+        $par;
+        $mayor;
+        $num % 2 == 0 ? $par = "es par" : $par = "es impar";
+        $num > 10 ? $mayor = "es mayor a 10" : $mayor = "es menor a 10";
+
+        $msg = "El número $par y $mayor";
+
         return $msg;
     }
 }
@@ -64,14 +76,14 @@ class punto_2 extends calcular_notas
 class punto_3 extends calcular_notas
 {
 
-    public static function calcular(array $array)
+    public static function calcular(array $array):string
     {
         $notas = self::valor_notas($array);
         $msg = ($notas !== false) ? self::proceso_3($notas) : "Notas no válidias";
         return $msg;
     }
 
-    public static function proceso_3(array $array)
+    public static function proceso_3(array $array):string
     {
         $res = $array[0];
         $cor = $array[1];
