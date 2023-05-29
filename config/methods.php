@@ -43,34 +43,62 @@ class calcular_notas
     }
 }
 
-class punto_2 extends calcular_notas{
+class punto_2 extends calcular_notas
+{
 
-    public static function calcular(array $array){
+    public static function calcular(array $array)
+    {
         $num = $array["number"];
         $num = self::validar($num);
         $msg = self::proceso_2($num);
         return $msg;
     }
 
-    public static function proceso_2(float $num){
+    public static function proceso_2(float $num)
+    {
         $num % 2 == 0 ? $msg = "El número es par" : $msg = "El número es impar";
         return $msg;
     }
 }
 
-class punto_3 extends calcular_notas{
+class punto_3 extends calcular_notas
+{
 
-    public static function calcular(array $array){
+    public static function calcular(array $array)
+    {
         $notas = self::valor_notas($array);
         $msg = ($notas !== false) ? self::proceso_3($notas) : "Notas no válidias";
         return $msg;
     }
 
-    public static function proceso_3(array $array){
+    public static function proceso_3(array $array)
+    {
         $res = $array[0];
         $cor = $array[1];
         $vol = $res * $cor;
         $msg = "El voltaje es: $vol (v)";
+        return $msg;
+    }
+}
+
+class punto_4 extends calcular_notas
+{
+
+    public static function calcular(array $array)
+    {
+        $nombreM = "";
+        $mayor = 0;
+        for ($i = 1; $i <= 3; $i++) {
+            $nombre = "nameP" . $i;
+            $edad = "edadP" . $i;
+
+            if ($array[$edad] > $mayor) {
+                $mayor = $array[$edad];
+                $nombreM = $array[$nombre];
+            }
+        }
+
+        $msg = "La persona mayor es: " . $nombreM;
         return $msg;
     }
 }
